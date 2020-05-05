@@ -2,16 +2,13 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux'
 
 import {submitSmurfs} from '../actions/submitSmurfs'
-import xios from 'axios';
 
 function SmurfForm (props) {
-
     const [smurf, setSmurf] = useState({
         name: '',
         age: '',
         height: ''
       })
-
       console.log('smurf from form', smurf);
 
       const handleChange = e => {
@@ -19,8 +16,8 @@ function SmurfForm (props) {
       }
 
       const handleSubmit = e => {
-          e.preventDefault()
-          submitSmurfs(e)
+          e.preventDefault();
+          props.submitSmurfs(smurf)
                             //submits new state
           setSmurf({        //resets the form after user submit
             name: '',
@@ -28,7 +25,6 @@ function SmurfForm (props) {
             height: ''
           })
       }
-
       return (
           <div>
             <h2>REGISTER NEW SMURF HERE:</h2>
