@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 import {submitSmurfs} from '../actions/submitSmurfs'
 
-function SmurfForm (props) {
+function SmurfForm ({submitSmurfs}) {
     const [smurf, setSmurf] = useState({
         name: '',
         age: '',
@@ -13,17 +13,13 @@ function SmurfForm (props) {
 
       const handleChange = e => {
           setSmurf({...smurf, [e.target.name]: e.target.value })
-      }
+      };
 
       const handleSubmit = e => {
           e.preventDefault();
-          props.submitSmurfs(smurf)
-                            //submits new state
-          setSmurf({        //resets the form after user submit
-            name: '',
-            age: '',
-            height: ''
-          })
+          return smurf.name === "" || smurf.age === "" || smurf.height === "" //if the form is empty return null
+          ? null : submitSmurfs(smurf)  //if not submit new state
+          
       }
       return (
           <div>
@@ -50,7 +46,7 @@ function SmurfForm (props) {
                     name='height'
                     onChange={handleChange}
                 />
-                <button>Add</button>
+                <button type="submit">Add</button>
             </form>
           </div>
       )

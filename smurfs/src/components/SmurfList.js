@@ -25,7 +25,7 @@ const SmurfList = (props) => {
 const mapStateToProps = (state) => {
     return {
         smurfs: state.smurfs,
-        fetchingSmurfs: state.fetchingSmurfs
+        isFetchingSmurfs: state.isFetchingSmurfs
     }
 }
 
